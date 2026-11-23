@@ -1,0 +1,21 @@
+# Render: free static site. New > Blueprint (or New > Static Site) and point it at the
+# repo; Render does not read web/_headers, so the caching rules are repeated here.
+services:
+  - type: web
+    name: solution-econocell
+    runtime: static
+    buildCommand: ""
+    staticPublishPath: ./web
+    headers:
+      - path: /assets/model-viewer.min.js
+        name: Cache-Control
+        value: public, max-age=31536000, immutable
+      - path: /assets/draco/*
+        name: Cache-Control
+        value: public, max-age=31536000, immutable
+      - path: /models/*
+        name: Cache-Control
+        value: public, max-age=3600
+      - path: /*
+        name: Cache-Control
+        value: public, max-age=300

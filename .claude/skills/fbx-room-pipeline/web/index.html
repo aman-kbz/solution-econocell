@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ECP Offices 2026 — Room Viewer</title>
+<link rel="icon" href="assets/favicon.svg">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+
+<header class="bar">
+  <img class="logo" src="assets/logo.png" alt="Ambienti Moderne">
+  <div>
+    <h1>ECP Offices 2026</h1>
+    <p class="sub">Interactive room viewer</p>
+  </div>
+</header>
+
+<main class="wrap">
+  <p class="lede">Select a room to open it in 3D. Drag to orbit, scroll to zoom, right-drag to pan.
+     Inside a room you can hide individual walls to look into the casework.</p>
+  <div class="grid" id="grid"></div>
+  <p class="foot">Uniboard laminate — G23 Coastal Pear &amp; H53 Ember · Richelieu 3647 pulls</p>
+</main>
+
+<script src="assets/rooms.js"></script>
+<script>
+  document.getElementById("grid").innerHTML = window.ECP_ROOMS.map(r => `
+    <a class="card" href="rooms/${r.key}.html">
+      <div class="thumb">
+        <span class="ph">◱</span>
+        <img src="assets/thumbs/${r.key.replace(/\//g, "__")}.jpg" alt=""
+             onerror="this.remove()" loading="lazy">
+      </div>
+      <div class="meta"><strong>${r.title}</strong></div>
+    </a>`).join("");
+</script>
+
+</body>
+</html>

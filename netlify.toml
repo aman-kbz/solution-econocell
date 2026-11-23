@@ -1,0 +1,5 @@
+# Netlify: static site, nothing to build — the GLBs and pages are committed.
+# Connect the repo in Netlify and it picks this up; caching comes from web/_headers.
+[build]
+  publish = "web"
+  command = ""
