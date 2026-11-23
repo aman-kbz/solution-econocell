@@ -1,0 +1,19 @@
+# Caching rules for Cloudflare Pages / Netlify (this file must sit in the PUBLISHED
+# directory, i.e. web/). Render uses the headers block in render.yaml instead.
+#
+# The vendored library and decoders are version-pinned and never change in place, so
+# they can be cached hard. Everything else is deliberately SHORT-lived: viewer.js and
+# the GLBs get re-exported often, and a stale copy is exactly the "I fixed it but the
+# site still shows the old one" trap.
+
+/assets/model-viewer.min.js
+  Cache-Control: public, max-age=31536000, immutable
+
+/assets/draco/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/models/*
+  Cache-Control: public, max-age=3600
+
+/*
+  Cache-Control: public, max-age=300
